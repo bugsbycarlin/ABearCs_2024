@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "build-application": "electron-builder -m"
+    "build-game": "electron-builder -m"
   },
   "author": "AlphaZoo",
   "license": "MIT",
