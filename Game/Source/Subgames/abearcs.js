@@ -25,6 +25,9 @@ class Display extends Screen {
     this.letter_delay = 200;
     this.word_delay = 1000;
 
+    this.last_letter = null;
+    this.last_picture = null;
+
     this.game_width = game_width;
     this.game_height = game_height;
 
@@ -65,9 +68,15 @@ class Display extends Screen {
     let key = ev.key;
 
     for (i in lower_array) {
-      if (key === lower_array[i]) {
-        this.choosePicture(lower_array[i]);
+      if (key === lower_array[i] || key === letter_array[i]) {
+        if (key != this.last_letter) {
+          this.choosePicture(lower_array[i]);
+        }
       }
+    }
+
+    if (key === " ") {
+      this.choosePicture(pick(lower_array))
     }
 
     // if (this.stateGuard("add")) {
@@ -114,6 +123,7 @@ class Display extends Screen {
       [picture.split("_")[0], this.word_delay, "w"]
     ];
 
+    this.last_letter = letter;
     this.last_picture = picture;
     this.state = "busy";
     this.stateChange = new Date();
